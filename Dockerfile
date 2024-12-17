@@ -74,4 +74,6 @@ COPY --from=package build/target/app.jar app.jar
 
 EXPOSE 8080
 
+HEALTHCHECK --interval=10s --timeout=5s --retries=3 CMD curl -f http://localhost:8080/actuator/health || exit 1
+
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
